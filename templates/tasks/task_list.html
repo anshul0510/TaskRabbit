@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .task-actions {
+            margin-top: 10px;
+        }
+        .task-actions a {
+            margin-right: 10px;
+            color: #007BFF;
+        }
+        .task-actions a:hover {
+            text-decoration: underline;
+        }
+        .button-container {
+            margin-bottom: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .button-container a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <a href="{% url 'home' %}">Home</a>
+    </div>
+    <h1>Task List</h1>
+    <a href="{% url 'create_task' %}">Create New Task</a>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> - {{ task.get_priority_display }}
+                <div class="task-actions">
+                    <a href="{% url 'update_task' task.pk %}">Edit</a>
+                    <a href="{% url 'delete_task' task.pk %}">Delete</a>
+                </div>
+            </li>
+        {% empty %}
+            <li>No tasks available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

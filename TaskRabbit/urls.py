@@ -24,6 +24,12 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('upload/', views.upload_image, name='upload_image'),
+    path('profile/', views.user_profile, name='user_profile'), 
+
+    path('tasks/', views.task_list, name='task_list'),
+    path('tasks/create/', views.create_task, name='create_task'),
+    path('tasks/update/<int:pk>/', views.update_task, name='update_task'),
+    path('tasks/delete/<int:pk>/', views.delete_task, name='delete_task'),
     path('', views.home, name='home'),
 
 ]
